@@ -31,6 +31,20 @@
             overflow-x: hidden;
             cursor: none;
             -webkit-tap-highlight-color: transparent;
+            /* Защита от копирования и выделения */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        /* Разрешаем выделение и ввод в полях формы */
+        input, textarea, select {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
         }
 
         .cursor-glow {
@@ -392,17 +406,19 @@
             z-index: 10;
         }
 
-        /* === ПРЕМИУМ 3D-ЗАГОЛОВОК === */
+        /* === ВЫТЯНУТЫЙ ПРЕМИУМ 3D-ЗАГОЛОВОК === */
         .hero-text h1 {
             font-family: 'Montserrat', sans-serif;
             font-size: 42px;
             font-weight: 900;
-            line-height: 1.15;
+            line-height: 1.05;
             margin-bottom: 24px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: #e0c4ff;
-            /* Премиальный 3D: тонкая обводка + мягкая тень + свечение */
+            display: block;
+            transform: scaleY(1.12);
+            transform-origin: left center;
             text-shadow: 
                 0 1px 0 #7b2cbf,
                 0 2px 0 #6a1fb0,
@@ -415,9 +431,9 @@
         }
         .hero-text h1 .line-2 {
             display: block;
-            margin-top: 8px;
+            margin-top: 10px;
             color: #e0c4ff;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
         }
         .hero-text h1 .accent-word {
             color: #e0c4ff;
@@ -847,6 +863,7 @@
             object-fit: contain;
             filter: drop-shadow(0 20px 40px rgba(157, 78, 221, 0.5));
             animation: giftFloat 4s ease-in-out infinite;
+            pointer-events: none;
         }
         @keyframes giftFloat {
             0%, 100% { transform: translateY(0) rotate(-2deg); }
@@ -1199,15 +1216,20 @@
             .hero { padding: 30px 0 40px; }
             .hero-text h1 { 
                 font-size: 26px; 
-                line-height: 1.15; 
+                line-height: 1.05; 
                 margin-bottom: 16px;
                 letter-spacing: 1px;
+                transform: scaleY(1.1);
                 text-shadow: 
                     0 1px 0 #7b2cbf,
                     0 2px 0 #6a1fb0,
                     0 3px 0 #5a1599,
                     0 4px 6px rgba(0, 0, 0, 0.7),
                     0 0 20px rgba(157, 78, 221, 0.5);
+            }
+            .hero-text h1 .line-2 {
+                margin-top: 8px;
+                letter-spacing: 1.5px;
             }
             .hero-text p { font-size: 14px; margin-bottom: 16px; max-width: 100%; }
             .delivery-note { font-size: 12.5px; padding: 10px 12px; margin-bottom: 18px; gap: 8px; }
@@ -1855,6 +1877,58 @@
     </div>
 
     <script>
+        // === ЗАЩИТА ОТ КОПИРОВАНИЯ ===
+        // 1. Запрет правого клика (контекстное меню)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // 2. Запрет выделения текста через Ctrl+A / Cmd+A
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+A / Cmd+A — выделить всё
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'a' || e.key === 'A' || e.keyCode === 65)) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+U / Cmd+U — посмотреть код
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'u' || e.key === 'U' || e.keyCode === 85)) {
+                e.preventDefault();
+                return false;
+            }
+            // Ctrl+C / Cmd+C — копировать
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'C' || e.keyCode === 67)) {
+                // Разрешаем копирование только из полей ввода
+                const tag = e.target.tagName;
+                if (tag !== 'INPUT' && tag !== 'TEXTAREA') {
+                    e.preventDefault();
+                    return false;
+                }
+            }
+            // Ctrl+S / Cmd+S — сохранить страницу
+            if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S' || e.keyCode === 83)) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // 3. Запрет выделения мышью на контенте (не на полях формы)
+        document.addEventListener('selectstart', function(e) {
+            const tag = e.target.tagName;
+            if (tag !== 'INPUT' && tag !== 'TEXTAREA') {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // 4. Запрет перетаскивания картинок
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+                return false;
+            }
+        });
+
         // === КУРСОР ===
         const cursorGlow = document.getElementById('cursorGlow');
         if (cursorGlow) {
@@ -2048,7 +2122,7 @@
             
             const formData = { name, phone, brand, issue, agree: 'да' };
             
-            // ДЕМО-РЕЖИМ
+            // ДЕМО-РЕЖИМ — вставьте блок для Telegram Bot или Formspree
             console.log('Отправка данных (демо):', formData);
             setTimeout(() => {
                 const toast = document.getElementById('toast');
