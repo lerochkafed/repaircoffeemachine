@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика конфиденциальности | REPAIR COFFEEMACHINE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0510;
+            --accent: #9d4edd;
+            --accent-glow: rgba(157, 78, 221, 0.6);
+            --accent-hover: #c77dff;
+            --text-main: #f3e8ff;
+            --text-muted: #a395b5;
+            --border-color: rgba(157, 78, 221, 0.25);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            background-color: rgba(10, 5, 16, 0.9);
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .logo-img {
+            height: 60px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 0 15px rgba(157, 78, 221, 0.5));
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--accent);
+            padding: 12px 20px;
+            border: 1px solid var(--accent);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            min-height: 44px;
+        }
+        .back-link:hover {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 0 25px var(--accent-glow);
+        }
+        .back-link svg {
+            width: 14px; height: 14px;
+            stroke: currentColor;
+            fill: none; stroke-width: 2.5;
+            stroke-linecap: round; stroke-linejoin: round;
+        }
+
+        main { padding: 60px 0 80px; }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        .page-title span { color: var(--accent); text-shadow: 0 0 25px var(--accent-glow); }
+        .page-subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-card {
+            background: rgba(26, 15, 38, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px 36px;
+            backdrop-filter: blur(10px);
+        }
+
+        .content-card h2 {
+            font-size: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .content-card h2:first-child { margin-top: 0; }
+        .content-card h2 .num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px; height: 34px;
+            background: rgba(157, 78, 221, 0.15);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--accent);
+            flex-shrink: 0;
+            font-weight: 800;
+        }
+
+        .content-card p {
+            font-size: 15px;
+            color: var(--text-main);
+            margin-bottom: 14px;
+        }
+        .content-card p.muted {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        .content-card ul {
+            margin: 12px 0 16px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+        .content-card ul li {
+            font-size: 15px;
+            color: var(--text-muted);
+            padding-left: 22px;
+            position: relative;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+        .content-card ul li::before {
+            content: '▹';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-size: 15px;
+        }
+        .content-card strong { color: var(--text-main); font-weight: 700; }
+        .content-card a.inline {
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-color: rgba(157, 78, 221, 0.4);
+            text-underline-offset: 3px;
+        }
+        .content-card a.inline:hover { text-decoration-color: var(--accent); }
+
+        .info-block {
+            background: rgba(157, 78, 221, 0.08);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+        .info-block p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .info-block p:last-child { margin-bottom: 0; }
+        .info-block strong { color: var(--text-main); }
+
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 13px;
+            background-color: rgba(10, 5, 16, 0.9);
+        }
+
+        @media (max-width: 576px) {
+            .container { padding: 0 16px; }
+            .page-title { font-size: 22px; }
+            .content-card { padding: 28px 20px; border-radius: 16px; }
+            .content-card h2 { font-size: 16px; margin-top: 26px; }
+            .content-card h2 .num { width: 30px; height: 30px; font-size: 12px; }
+            .content-card p, .content-card ul li { font-size: 14px; }
+            .logo-img { height: 44px; }
+            .back-link { padding: 10px 14px; font-size: 11px; }
+            main { padding: 40px 0 60px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <a href="index.html">
+                <img src="images/logo.png" alt="REPAIR COFFEEMACHINE" class="logo-img">
+            </a>
+            <a href="index.html" class="back-link">
+                <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                На главную
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 class="page-title">Политика <span>конфиденциальности</span></h1>
+            <p class="page-subtitle">Последнее обновление: 1 января 2024 г.</p>
+
+            <div class="content-card">
+
+                <h2><span class="num">01</span> Общие положения</h2>
+                <p>Настоящая Политика конфиденциальности (далее — «Политика») действует в отношении всей информации, которую сервисный центр <strong>REPAIR COFFEEMACHINE</strong> (далее — «Сервис») может получить о Пользователе во время использования сайта.</p>
+                <p class="muted">Использование сайта означает безоговорочное согласие Пользователя с настоящей Политикой и указанными в ней условиями обработки персональных данных. В случае несогласия с условиями Пользователь должен воздержаться от использования сайта.</p>
+
+                <h2><span class="num">02</span> Какие данные мы собираем</h2>
+                <p>Сервис может собирать следующие персональные данные Пользователя:</p>
+                <ul>
+                    <li>Имя (или то, как Пользователь хочет, чтобы к нему обращались);</li>
+                    <li>Контактный номер телефона;</li>
+                    <li>Марка и модель кофемашины;</li>
+                    <li>Описание неисправности или запроса на обслуживание;</li>
+                    <li>Адрес электронной почты (если указан);</li>
+                    <li>Технические данные: IP-адрес, тип браузера, cookies, данные об устройстве.</li>
+                </ul>
+
+                <h2><span class="num">03</span> Цели обработки данных</h2>
+                <p>Персональные данные Пользователя обрабатываются в следующих целях:</p>
+                <ul>
+                    <li>Обработка заявок на ремонт и обслуживание кофемашин;</li>
+                    <li>Связь с Пользователем для уточнения деталей заказа;</li>
+                    <li>Предоставление информации о статусе ремонта;</li>
+                    <li>Информирование об акциях и услугах Сервиса (при отдельном согласии);</li>
+                    <li>Улучшение качества работы сайта и сервиса в целом.</li>
+                </ul>
+
+                <h2><span class="num">04</span> Передача данных третьим лицам</h2>
+                <p>Сервис <strong>не передаёт</strong> персональные данные Пользователя третьим лицам, за исключением случаев, предусмотренных законодательством РФ, а также случаев, когда это необходимо для оказания услуги (например, передача данных курьерским службам для доставки).</p>
+
+                <h2><span class="num">05</span> Хранение и защита данных</h2>
+                <p>Сервис принимает все необходимые организационные и технические меры для защиты персональных данных Пользователя от неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, распространения и иных неправомерных действий.</p>
+                <p>Данные хранятся в течение срока, необходимого для достижения целей обработки, либо в течение срока, установленного законодательством РФ.</p>
+
+                <h2><span class="num">06</span> Cookies и аналитика</h2>
+                <p>Сайт может использовать файлы cookies для улучшения работы и анализа поведения посетителей. Пользователь может в любой момент отключить cookies в настройках своего браузера, однако это может повлиять на работу отдельных элементов сайта.</p>
+
+                <h2><span class="num">07</span> Права Пользователя</h2>
+                <p>Пользователь имеет право:</p>
+                <ul>
+                    <li>Получить информацию об обработке своих персональных данных;</li>
+                    <li>Требовать уточнения, блокирования или уничтожения своих данных;</li>
+                    <li>Отозвать согласие на обработку персональных данных в любой момент;</li>
+                    <li>Обжаловать действия Сервиса в уполномоченных органах.</li>
+                </ul>
+                <p>Для реализации своих прав Пользователь может связаться с Сервисом по контактным данным, указанным ниже.</p>
+
+                <h2><span class="num">08</span> Контактные данные</h2>
+                <div class="info-block">
+                    <p><strong>Сервисный центр:</strong> REPAIR COFFEEMACHINE</p>
+                    <p><strong>Телефон:</strong> <a href="tel:+79017955577" class="inline">+7 (901) 795-55-77</a></p>
+                    <p><strong>Адрес в Москве:</strong> 1-й Дорожный проезд (метро Пражская)</p>
+                    <p><strong>Адрес в Подольске:</strong> ул. Садовая, 7к3</p>
+                    <p><strong>Партнёр по запчастям:</strong> <a href="https://s-coffee.ru" target="_blank" class="inline">s-coffee.ru</a></p>
+                </div>
+
+                <h2><span class="num">09</span> Изменение Политики</h2>
+                <p>Сервис оставляет за собой право вносить изменения в настоящую Политику конфиденциальности. Актуальная версия всегда доступна на данной странице. Продолжение использования сайта после изменений означает согласие Пользователя с новой редакцией.</p>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 REPAIR COFFEEMACHINE. Все права защищены.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
