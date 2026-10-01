@@ -19,9 +19,6 @@
             --text-muted: #a395b5;
             --success: #2ecc71;
             --border-color: rgba(157, 78, 221, 0.25);
-            --logo-light: #c99aff;
-            --logo-dark: #6a1fb0;
-            --logo-mid: #9d4edd;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -395,45 +392,35 @@
             z-index: 10;
         }
 
-        /* === ЛОГО-СТИЛЬ ЗАГОЛОВКА === */
+        /* === ПРЕМИУМ 3D-ЗАГОЛОВОК === */
         .hero-text h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 40px;
+            font-size: 42px;
             font-weight: 900;
-            line-height: 1.1;
+            line-height: 1.15;
             margin-bottom: 24px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #c99aff;
-            /* 3D-эффект: обводка + тени для объёма */
+            letter-spacing: 1.5px;
+            color: #e0c4ff;
+            /* Премиальный 3D: тонкая обводка + мягкая тень + свечение */
             text-shadow: 
-                /* белый верхний блик */
-                0 -1px 0 #ffffff,
-                0 -2px 0 #e0ccff,
-                /* фиолетовая обводка */
-                1px 0 0 #4a0e7a,
-                -1px 0 0 #4a0e7a,
-                0 1px 0 #4a0e7a,
-                0 2px 0 #4a0e7a,
-                0 3px 0 #4a0e7a,
-                0 4px 0 #3c096c,
-                0 5px 0 #3c096c,
-                0 6px 0 #2a064d,
-                0 7px 0 #2a064d,
-                0 8px 0 #1a0330,
-                /* мягкая тень + свечение */
-                0 10px 20px rgba(0,0,0,0.8),
-                0 0 30px rgba(157, 78, 221, 0.5);
-            -webkit-text-stroke: 1px #4a0e7a;
+                0 1px 0 #7b2cbf,
+                0 2px 0 #6a1fb0,
+                0 3px 0 #5a1599,
+                0 4px 8px rgba(0, 0, 0, 0.7),
+                0 0 25px rgba(157, 78, 221, 0.55),
+                0 0 50px rgba(157, 78, 221, 0.3);
+            -webkit-text-stroke: 0.5px rgba(157, 78, 221, 0.6);
             paint-order: stroke fill;
         }
         .hero-text h1 .line-2 {
             display: block;
-            margin-top: 6px;
-            color: #c99aff;
+            margin-top: 8px;
+            color: #e0c4ff;
+            letter-spacing: 2px;
         }
         .hero-text h1 .accent-word {
-            color: #c99aff;
+            color: #e0c4ff;
         }
 
         .hero-text p { 
@@ -1182,7 +1169,7 @@
             .header-contacts .btn-outline { display: none; }
             
             .hero-grid, .contacts-grid { grid-template-columns: 1fr; }
-            .hero-text h1 { font-size: 32px; }
+            .hero-text h1 { font-size: 34px; }
             .header-contacts .phone { font-size: 14px; }
             .stats-grid { grid-template-columns: 1fr; gap: 20px; }
             .section-title { font-size: 22px; }
@@ -1211,22 +1198,15 @@
             
             .hero { padding: 30px 0 40px; }
             .hero-text h1 { 
-                font-size: 24px; 
+                font-size: 26px; 
                 line-height: 1.15; 
                 margin-bottom: 16px;
-                letter-spacing: 0.5px;
+                letter-spacing: 1px;
                 text-shadow: 
-                    0 -1px 0 #ffffff,
-                    0 -2px 0 #e0ccff,
-                    1px 0 0 #4a0e7a,
-                    -1px 0 0 #4a0e7a,
-                    0 1px 0 #4a0e7a,
-                    0 2px 0 #4a0e7a,
-                    0 3px 0 #4a0e7a,
-                    0 4px 0 #3c096c,
-                    0 5px 0 #2a064d,
-                    0 6px 0 #1a0330,
-                    0 8px 15px rgba(0,0,0,0.8),
+                    0 1px 0 #7b2cbf,
+                    0 2px 0 #6a1fb0,
+                    0 3px 0 #5a1599,
+                    0 4px 6px rgba(0, 0, 0, 0.7),
                     0 0 20px rgba(157, 78, 221, 0.5);
             }
             .hero-text p { font-size: 14px; margin-bottom: 16px; max-width: 100%; }
@@ -1353,7 +1333,7 @@
         }
 
         @media (max-width: 380px) {
-            .hero-text h1 { font-size: 20px; }
+            .hero-text h1 { font-size: 22px; }
             .hero-form { padding: 20px 16px; }
             .about-h2 { font-size: 17px; }
             .section-title { font-size: 18px; }
@@ -1532,7 +1512,7 @@
                         </span>
                         <span class="check-text">
                             Я согласен(а) на обработку персональных данных и принимаю 
-                            <a href="privacy.html" target="_blank">политику конфиденциальности</a>
+                            <a href="privacy.html">политику конфиденциальности</a>
                         </span>
                     </label>
 
@@ -2068,7 +2048,7 @@
             
             const formData = { name, phone, brand, issue, agree: 'да' };
             
-            // ДЕМО-РЕЖИМ (вставьте сюда блок для Telegram Bot или Formspree)
+            // ДЕМО-РЕЖИМ
             console.log('Отправка данных (демо):', formData);
             setTimeout(() => {
                 const toast = document.getElementById('toast');
