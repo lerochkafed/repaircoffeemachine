@@ -52,7 +52,7 @@
 
         /* --- ШАПКА --- */
         header {
-            background-color: rgba(10, 5, 16, 0.8);
+            background-color: rgba(10, 5, 16, 0.85);
             padding: 14px 0; position: sticky; top: 0; z-index: 100;
             border-bottom: 1px solid var(--border-color); backdrop-filter: blur(20px);
         }
@@ -127,14 +127,165 @@
         .btn-outline { background: transparent; border: 1.5px solid var(--accent); box-shadow: none; }
         .btn-outline:hover { background: var(--accent); box-shadow: 0 0 25px var(--accent-glow); }
 
+        /* === БУРГЕР-МЕНЮ === */
+        .burger {
+            display: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: rgba(157, 78, 221, 0.1);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        .burger:hover {
+            background: rgba(157, 78, 221, 0.2);
+            box-shadow: 0 0 15px rgba(157, 78, 221, 0.2);
+        }
+        .burger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--text-main);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .burger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .burger.active span:nth-child(2) { opacity: 0; }
+        .burger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Мобильное меню */
+        .mobile-menu {
+            position: fixed;
+            top: 0; right: 0;
+            width: 300px;
+            max-width: 85vw;
+            height: 100vh;
+            background: rgba(10, 5, 16, 0.98);
+            backdrop-filter: blur(25px);
+            border-left: 1px solid var(--border-color);
+            z-index: 200;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            display: flex;
+            flex-direction: column;
+            padding: 80px 30px 30px;
+        }
+        .mobile-menu.active { transform: translateX(0); }
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px; right: 20px;
+            width: 42px; height: 42px;
+            border-radius: 12px;
+            background: rgba(157, 78, 221, 0.1);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-main);
+            font-size: 20px;
+            transition: 0.3s;
+        }
+        .mobile-menu-close:hover {
+            background: rgba(157, 78, 221, 0.2);
+            color: var(--accent);
+        }
+        .mobile-menu-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+        .mobile-menu-nav a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(26, 15, 38, 0.5);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            min-height: 52px;
+        }
+        .mobile-menu-nav a:hover,
+        .mobile-menu-nav a:active {
+            background: rgba(157, 78, 221, 0.15);
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+        .mobile-menu-nav a::after {
+            content: '→';
+            color: var(--accent);
+            font-size: 18px;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+        .mobile-menu-nav a:hover::after { opacity: 1; transform: translateX(4px); }
+        .mobile-menu-contacts {
+            margin-top: auto;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+        .mobile-menu-contacts a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            background: rgba(157, 78, 221, 0.08);
+            border: 1px solid var(--border-color);
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+        .mobile-menu-contacts a:hover {
+            background: rgba(157, 78, 221, 0.15);
+            color: var(--accent);
+        }
+        .mobile-menu-contacts svg {
+            width: 20px; height: 20px;
+            stroke: var(--accent);
+            fill: none; stroke-width: 2;
+            stroke-linecap: round; stroke-linejoin: round;
+            flex-shrink: 0;
+        }
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 150;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+        .mobile-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         /* === ПЛАВАЮЩАЯ КНОПКА === */
         .floating-btn {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 24px;
+            right: 24px;
             z-index: 999;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             background: linear-gradient(135deg, var(--accent), var(--accent-hover));
             color: white;
@@ -154,7 +305,7 @@
             transform: translateY(100px);
             pointer-events: none;
             border: 1px solid rgba(255,255,255,0.15);
-            min-height: 52px;
+            min-height: 54px;
         }
         .floating-btn.visible {
             opacity: 1;
@@ -963,7 +1114,6 @@
         .footer-links a { font-size: 13px; opacity: 0.6; }
         .footer-links a:hover { opacity: 1; color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
 
-        /* --- АНИМАЦИИ ПОЯВЛЕНИЯ --- */
         .reveal { 
             opacity: 0; 
             transform: translateY(50px); 
@@ -978,9 +1128,8 @@
         .reveal.delay-1 { transition-delay: 0.1s; }
         .reveal.delay-2 { transition-delay: 0.2s; }
         .reveal.delay-3 { transition-delay: 0.3s; }
-        .reveal.delay-4 { transition-delay: 0.4s; }
 
-        /* --- АДАПТИВ --- */
+        /* --- ПЛАНШЕТЫ --- */
         @media (max-width: 1100px) {
             .nav { 
                 position: static; 
@@ -991,18 +1140,23 @@
             }
             .nav a { font-size: 12px; }
         }
+
+        /* --- ПЛАНШЕТЫ И ТЕЛЕФОНЫ --- */
         @media (max-width: 992px) {
             .nav { display: none; }
+            .burger { display: flex; }
+            .header-contacts .btn-outline { display: none; } /* Убираем кнопку "Заявка" на мобильных */
+            
             .hero-grid, .contacts-grid { grid-template-columns: 1fr; }
-            .hero-text h1 { font-size: 26px; }
-            .header-contacts .phone { display: none; }
-            .stats-grid { grid-template-columns: 1fr; gap: 24px; }
+            .hero-text h1 { font-size: 28px; }
+            .header-contacts .phone { font-size: 14px; }
+            .stats-grid { grid-template-columns: 1fr; gap: 20px; }
             .section-title { font-size: 22px; }
             .cursor-glow { display: none; }
             body { cursor: auto; }
-            .hero { min-height: auto; padding: 60px 0; }
+            .hero { min-height: auto; padding: 50px 0; }
             .smoke-cloud { filter: blur(70px); }
-            .about-hero { grid-template-columns: 1fr; gap: 60px; margin-bottom: 70px; }
+            .about-hero { grid-template-columns: 1fr; gap: 50px; margin-bottom: 70px; }
             .photo-frame { aspect-ratio: 4/3; max-width: 500px; margin: 0 auto; }
             .photo-badges { bottom: -15px; }
             .about-h2 { font-size: 24px; }
@@ -1013,60 +1167,162 @@
             .works-grid { grid-template-columns: 1fr; }
             .logo-img { height: 56px; }
         }
-        @media (max-width: 576px) {
-            .container { padding: 0 18px; }
-            .header-content { flex-direction: column; gap: 12px; padding: 8px 0; }
-            .logo-img { height: 50px; }
-            .header-contacts { width: 100%; justify-content: center; }
-            .hero { padding: 40px 0 50px; }
-            .hero-text h1 { font-size: 21px; line-height: 1.3; }
-            .hero-text p { font-size: 15px; max-width: 100%; }
-            .delivery-note { font-size: 13px; padding: 10px 14px; }
-            .hero-badges { gap: 6px; }
-            .hero-badge { font-size: 11px; padding: 7px 12px; }
-            .hero-form { padding: 24px 18px; border-radius: 16px; }
-            .hero-form h3 { font-size: 18px; }
-            .form-group input, .form-group select, .form-group textarea { font-size: 16px; padding: 13px 14px; }
-            .form-btn { font-size: 13px; padding: 15px; }
-            .section-title { font-size: 19px; }
-            .section-subtitle { font-size: 14px; margin-bottom: 35px; }
-            .service-card { padding: 24px 20px; }
-            .service-card h3 { font-size: 16px; }
-            .service-card .price-tag { font-size: 18px; padding: 7px 14px; }
-            .service-card ul li { font-size: 13px; }
-            .about { padding: 70px 0; }
-            .about-features { grid-template-columns: 1fr; }
-            .process-steps { grid-template-columns: 1fr; }
-            .about-h2 { font-size: 20px; }
-            .about-lead { font-size: 15px; }
-            .about-sub { font-size: 14px; }
-            .photo-badges { flex-direction: column; bottom: -50px; left: 10px; right: 10px; }
-            .p-badge { font-size: 11px; padding: 10px 14px; }
-            .about-masters { padding: 14px 16px; }
-            .about-masters svg { width: 26px; height: 26px; }
-            .about-masters-text { font-size: 13px; }
-            .gift-text h3 { font-size: 20px; }
-            .gift-text p { font-size: 15px; }
-            .faq-question { font-size: 14px; padding: 16px 18px; }
-            .faq-answer { font-size: 14px; padding: 0 18px; }
-            .contact-info h3 { font-size: 18px; }
-            .contact-item .text p, .contact-item .text a { font-size: 14px; }
-            .work-card { padding: 26px 20px; }
-            .work-card h3 { font-size: 17px; }
-            .stat-item h4 { font-size: 34px; }
-            .map-container { min-height: 300px; }
+
+        /* --- МОБИЛЬНЫЕ --- */
+        @media (max-width: 640px) {
+            .container { padding: 0 16px; }
+            header { padding: 10px 0; }
+            .header-content { gap: 12px; }
+            .logo-img { height: 48px; }
+            .header-contacts .phone { display: none; } /* Убираем телефон, есть в бургере */
             
-            .floating-btn {
-                bottom: 20px;
-                right: 20px;
-                padding: 14px 20px;
-                font-size: 12px;
-                gap: 8px;
+            /* HERO */
+            .hero { padding: 30px 0 40px; }
+            .hero-text h1 { font-size: 22px; line-height: 1.3; margin-bottom: 14px; }
+            .hero-text p { font-size: 14px; margin-bottom: 16px; max-width: 100%; }
+            .delivery-note { font-size: 12.5px; padding: 10px 12px; margin-bottom: 18px; gap: 8px; }
+            .delivery-note svg { width: 16px; height: 16px; }
+            .hero-badges { gap: 6px; margin-bottom: 20px; }
+            .hero-badge { font-size: 10.5px; padding: 6px 11px; gap: 5px; }
+            .hero-badge .badge-check { width: 13px; height: 13px; }
+            .hero-badge .badge-check svg { width: 8px; height: 8px; }
+            
+            /* FORM */
+            .hero-form { padding: 24px 18px; border-radius: 16px; }
+            .hero-form h3 { font-size: 17px; margin-bottom: 6px; }
+            .hero-form .subtitle { font-size: 12.5px; margin-bottom: 18px; }
+            .form-group { margin-bottom: 12px; }
+            .form-group label { font-size: 11px; margin-bottom: 5px; }
+            .form-group input, .form-group select, .form-group textarea { 
+                font-size: 16px; /* защита от зума iOS */
+                padding: 13px 14px;
+                border-radius: 10px;
                 min-height: 48px;
             }
-            .floating-btn svg { width: 16px; height: 16px; }
+            .form-group textarea { min-height: 70px; font-size: 15px; }
+            .check-text { font-size: 12px; }
+            .check-box { width: 22px; height: 22px; }
+            .form-btn { padding: 16px; font-size: 13px; }
+            
+            /* MARQUEE */
+            .marquee { padding: 10px 0; }
+            .marquee-content span { font-size: 11px; margin: 0 20px; letter-spacing: 2px; }
+            
+            /* ABOUT */
+            .about { padding: 50px 0; }
+            .about-hero { gap: 40px; margin-bottom: 50px; }
+            .photo-badges { 
+                flex-direction: row;
+                bottom: -15px; 
+                left: 12px; right: 12px;
+                gap: 6px;
+            }
+            .p-badge { font-size: 10px; padding: 8px 12px; gap: 5px; flex: 1; justify-content: center; }
+            .p-badge .badge-dot { width: 6px; height: 6px; }
+            .about-h2 { font-size: 19px; margin-bottom: 16px; }
+            .about-lead { font-size: 14px; margin-bottom: 12px; }
+            .about-sub { font-size: 13px; margin-bottom: 20px; }
+            .about-masters { padding: 12px 14px; gap: 10px; }
+            .about-masters svg { width: 24px; height: 24px; }
+            .about-masters-text { font-size: 12.5px; }
+            .about-features { grid-template-columns: 1fr; gap: 10px; margin-top: 18px; }
+            .a-feature { padding: 16px 18px; flex-direction: row; align-items: center; gap: 14px; }
+            .a-feature-icon { width: 40px; height: 40px; flex-shrink: 0; }
+            .a-feature-icon svg { width: 22px; height: 22px; }
+            .a-feature-text strong { font-size: 19px; }
+            .a-feature-text span { font-size: 11px; }
+            
+            /* GIFT */
+            .about-gift { margin-top: 50px; padding-top: 40px; gap: 20px; }
+            .gift-image { min-height: 180px; }
+            .gift-image img { max-height: 200px; }
+            .gift-text h3 { font-size: 18px; margin-bottom: 12px; }
+            .gift-text p { font-size: 13.5px; margin-bottom: 10px; }
+            
+            /* PROCESS */
+            .about-process { margin-top: 50px; padding-top: 40px; }
+            .process-title { font-size: 11px; letter-spacing: 3px; margin-bottom: 30px; }
+            .process-steps { grid-template-columns: 1fr; gap: 20px; }
+            .p-step { display: flex; gap: 16px; text-align: left; align-items: flex-start; padding: 0; }
+            .p-step-num { width: 44px; height: 44px; font-size: 14px; margin: 0; flex-shrink: 0; }
+            .p-step-content { flex: 1; }
+            .p-step h4 { font-size: 14px; margin-bottom: 4px; }
+            .p-step p { font-size: 12.5px; }
+            
+            /* SERVICES */
+            .services { padding: 50px 0; }
+            .section-title { font-size: 20px; margin-bottom: 14px; }
+            .section-subtitle { font-size: 13px; margin-bottom: 28px; }
+            .services-grid { grid-template-columns: 1fr; gap: 16px; }
+            .service-card { padding: 22px 18px; border-radius: 16px; }
+            .service-card h3 { font-size: 15.5px; margin-bottom: 10px; }
+            .service-card .price-tag { font-size: 17px; padding: 6px 14px; margin-bottom: 14px; }
+            .service-card ul li { font-size: 12.5px; margin-bottom: 7px; padding-left: 16px; }
+            
+            /* WORKS */
+            .works { padding: 50px 0; }
+            .works-grid { gap: 16px; }
+            .work-card { padding: 24px 20px; border-radius: 16px; }
+            .work-icon { width: 50px; height: 50px; margin-bottom: 16px; }
+            .work-icon svg { width: 24px; height: 24px; }
+            .work-card h3 { font-size: 17px; }
+            .work-card p { font-size: 13px; margin-bottom: 16px; }
+            .work-link { font-size: 12.5px; padding: 11px 18px; }
+            
+            /* WHY US */
+            .why-us { padding: 50px 0; }
+            .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+            .stat-item h4 { font-size: 28px; }
+            .stat-item p { font-size: 10.5px; letter-spacing: 1px; }
+            
+            /* FAQ */
+            .faq { padding: 50px 0; }
+            .faq-question { font-size: 13.5px; padding: 16px 18px; min-height: 54px; gap: 12px; }
+            .faq-question::after { font-size: 20px; }
+            .faq-answer { font-size: 13px; padding: 0 18px; }
+            .faq-answer p { line-height: 1.6; }
+            
+            /* CONTACTS */
+            .contacts { padding: 50px 0; }
+            .contacts-grid { gap: 30px; }
+            .contact-info h3 { font-size: 17px; margin-bottom: 20px; }
+            .contact-item { gap: 12px; margin-bottom: 18px; }
+            .contact-item .icon-box { padding: 10px; }
+            .contact-item .icon-box svg { width: 18px; height: 18px; }
+            .contact-item .text h4 { font-size: 11.5px; }
+            .contact-item .text p, .contact-item .text a { font-size: 13.5px; }
+            .contact-item .text p[style] { font-size: 12px !important; }
+            .map-container { min-height: 280px; border-radius: 16px; }
+            
+            /* FOOTER */
+            footer { padding: 30px 0; font-size: 12.5px; }
+            .footer-links { gap: 16px; margin-top: 10px; }
+            .footer-links a { font-size: 12px; }
+            
+            /* FLOATING BTN */
+            .floating-btn {
+                bottom: 18px;
+                right: 18px;
+                padding: 14px;
+                width: 56px;
+                height: 56px;
+                min-height: auto;
+                border-radius: 50%;
+                gap: 0;
+            }
+            .floating-btn svg { width: 22px; height: 22px; }
             .floating-btn .btn-text-full { display: none; }
         }
+
+        /* --- ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ --- */
+        @media (max-width: 380px) {
+            .hero-text h1 { font-size: 19px; }
+            .hero-form { padding: 20px 16px; }
+            .about-h2 { font-size: 17px; }
+            .section-title { font-size: 18px; }
+            .p-badge { font-size: 9px; padding: 7px 10px; }
+        }
+
         @media (max-height: 600px) and (orientation: landscape) {
             .hero { min-height: auto; padding: 40px 0; }
         }
@@ -1077,8 +1333,8 @@
             color: var(--text-main); padding: 16px 24px; border-radius: 14px; font-weight: 700;
             border: 1px solid var(--success); box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 25px rgba(46, 204, 113, 0.3);
             opacity: 0; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 1000; display: flex; align-items: center; gap: 12px; backdrop-filter: blur(20px); font-size: 15px;
-            max-width: calc(100% - 40px);
+            z-index: 1000; display: flex; align-items: center; gap: 12px; backdrop-filter: blur(20px); font-size: 14px;
+            max-width: calc(100% - 32px);
         }
         .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
     </style>
@@ -1087,6 +1343,26 @@
 
     <div class="cursor-glow" id="cursorGlow"></div>
 
+    <!-- МОБИЛЬНОЕ МЕНЮ -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-close" id="mobileMenuClose">✕</div>
+        <nav class="mobile-menu-nav">
+            <a href="#about">О сервисе</a>
+            <a href="#services">Услуги</a>
+            <a href="#works">Работы</a>
+            <a href="#faq">Вопросы</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+        <div class="mobile-menu-contacts">
+            <a href="tel:+79017955577">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                +7 (901) 795-55-77
+            </a>
+        </div>
+    </div>
+
+    <!-- ШАПКА -->
     <header>
         <div class="container header-content">
             <a href="#" class="logo-img-link">
@@ -1107,6 +1383,11 @@
                     +7 (901) 795-55-77
                 </a>
                 <a href="#form" class="btn btn-outline">Заявка</a>
+                <div class="burger" id="burger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </header>
@@ -1125,7 +1406,6 @@
         </div>
     </div>
 
-    <!-- HERO -->
     <section class="hero">
         
         <div class="smoke-layer">
@@ -1140,7 +1420,6 @@
 
         <div class="container hero-grid">
             <div class="hero-text reveal">
-                <!-- ЗАГОЛОВОК: "в" перенесено на новую строку через <br> -->
                 <h1>Профессиональный <span>ремонт кофемашин</span><br>в Москве и МО</h1>
                 <p>Сервисный центр REPAIR COFFEEMACHINE. Быстро, качественно и с гарантией. Работаем с Jura, Delonghi, Philips, Saeco и другими брендами.</p>
                 
@@ -1225,7 +1504,6 @@
         </div>
     </section>
 
-    <!-- О СЕРВИСЕ -->
     <section class="about" id="about">
         <div class="container">
             
@@ -1309,23 +1587,31 @@
                 <div class="process-steps">
                     <div class="p-step">
                         <div class="p-step-num">01</div>
-                        <h4>Заявка</h4>
-                        <p>Оставляете заявку на сайте или по телефону</p>
+                        <div class="p-step-content">
+                            <h4>Заявка</h4>
+                            <p>Оставляете заявку на сайте или по телефону</p>
+                        </div>
                     </div>
                     <div class="p-step">
                         <div class="p-step-num">02</div>
-                        <h4>Диагностика</h4>
-                        <p>Бесплатно выявим причину поломки, предложим план работ</p>
+                        <div class="p-step-content">
+                            <h4>Диагностика</h4>
+                            <p>Бесплатно выявим причину поломки, предложим план работ</p>
+                        </div>
                     </div>
                     <div class="p-step">
                         <div class="p-step-num">03</div>
-                        <h4>Ремонт</h4>
-                        <p>После согласования приступаем. Срок — 1–4 рабочих дня</p>
+                        <div class="p-step-content">
+                            <h4>Ремонт</h4>
+                            <p>После согласования приступаем. Срок — 1–4 рабочих дня</p>
+                        </div>
                     </div>
                     <div class="p-step">
                         <div class="p-step-num">04</div>
-                        <h4>Гарантия</h4>
-                        <p>Выдаём гарантию до 1 года на работы и установленные детали</p>
+                        <div class="p-step-content">
+                            <h4>Гарантия</h4>
+                            <p>Выдаём гарантию до 1 года на работы и установленные детали</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1333,7 +1619,6 @@
         </div>
     </section>
 
-    <!-- УСЛУГИ -->
     <section class="services" id="services">
         <div class="container">
             <h2 class="section-title reveal">Наши <span>услуги и цены</span></h2>
@@ -1413,7 +1698,6 @@
         </div>
     </section>
 
-    <!-- НАШИ РАБОТЫ -->
     <section class="works" id="works">
         <div class="container">
             <h2 class="section-title reveal">Наши <span>работы</span></h2>
@@ -1448,7 +1732,6 @@
         </div>
     </section>
 
-    <!-- ПОЧЕМУ МЫ -->
     <section class="why-us">
         <div class="container">
             <div class="stats-grid reveal">
@@ -1459,7 +1742,6 @@
         </div>
     </section>
 
-    <!-- FAQ -->
     <section class="faq" id="faq">
         <div class="container">
             <h2 class="section-title reveal">Часто задаваемые <span>вопросы</span></h2>
@@ -1481,7 +1763,6 @@
                         <p>Стоимость: 12 000 ₽ — с вынимаемым варочным блоком, 14 000 ₽ — с невынимаемым (трудоёмкость увеличена).</p>
                     </div>
                 </div>
-                <!-- ИСПРАВЛЕНО: "от 5 000 ₽" вместо "5 000 ₽" -->
                 <div class="faq-item">
                     <div class="faq-question">Сколько стоит ремонт?</div>
                     <div class="faq-answer"><p>Стоимость ремонта — <strong>от 5 000 ₽</strong> + стоимость детали. Точную сумму сообщим после бесплатной диагностики. Гарантия на установленные детали и узлы — до 1 года.</p></div>
@@ -1502,7 +1783,6 @@
         </div>
     </section>
 
-    <!-- КОНТАКТЫ -->
     <section class="contacts" id="contacts">
         <div class="container">
             <h2 class="section-title reveal">Наши <span>контакты</span></h2>
@@ -1526,7 +1806,6 @@
                         <div class="text"><h4>Соцсети</h4><a href="https://instagram.com/repair_coffeemachine" target="_blank">@repair_coffeemachine</a><a href="https://youtube.com/@repair_coffeemachine" target="_blank">YouTube: REPAIR COFFEEMACHINE</a></div>
                     </div>
                 </div>
-                <!-- ЯНДЕКС.КАРТА С РЕАЛЬНЫМ АДРЕСОМ -->
                 <div class="map-container reveal delay-1">
                     <iframe 
                         src="https://yandex.ru/map-widget/v1/?text=Москва%2C%201-й%20Дорожный%20проезд&z=16&ll=37.6635%2C55.6105&mode=search&pt=37.6635,55.6105,pm2rdm"
@@ -1541,7 +1820,6 @@
         </div>
     </section>
 
-    <!-- ПОДВАЛ -->
     <footer>
         <div class="container">
             <p>&copy; 2024 REPAIR COFFEEMACHINE. Все права защищены.</p>
@@ -1561,9 +1839,39 @@
     <script>
         // === КУРСОР ===
         const cursorGlow = document.getElementById('cursorGlow');
-        document.addEventListener('mousemove', (e) => {
-            cursorGlow.style.left = e.clientX + 'px';
-            cursorGlow.style.top = e.clientY + 'px';
+        if (cursorGlow) {
+            document.addEventListener('mousemove', (e) => {
+                cursorGlow.style.left = e.clientX + 'px';
+                cursorGlow.style.top = e.clientY + 'px';
+            });
+        }
+
+        // === БУРГЕР-МЕНЮ ===
+        const burger = document.getElementById('burger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        function openMenu() {
+            burger.classList.add('active');
+            mobileMenu.classList.add('active');
+            mobileOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+            burger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        burger.addEventListener('click', openMenu);
+        mobileMenuClose.addEventListener('click', closeMenu);
+        mobileOverlay.addEventListener('click', closeMenu);
+        
+        // Закрываем меню при клике на ссылку
+        document.querySelectorAll('.mobile-menu-nav a').forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
 
         // === 3D КАРТОЧКИ ===
@@ -1697,7 +2005,7 @@
         }, { threshold: 0 });
         heroObserver.observe(heroSection);
 
-        // === ОТПРАВКА ФОРМЫ (ЗАГОТОВКА ДЛЯ БОТА) ===
+        // === ОТПРАВКА ФОРМЫ ===
         document.getElementById('leadForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -1724,7 +2032,7 @@
             const formData = { name, phone, brand, issue, agree: 'да' };
             
             // =============================================
-            // ВАРИАНТ 1: TELEGRAM BOT
+            // ВАРИАНТ 1: TELEGRAM BOT (раскомментируйте и вставьте данные)
             // =============================================
             /*
             const TELEGRAM_BOT_TOKEN = 'ВАШ_ТОКЕН';
@@ -1758,28 +2066,7 @@
             }
             */
             
-            // =============================================
-            // ВАРИАНТ 2: FORMSPREE
-            // =============================================
-            /*
-            const FORMSPREE_ENDPOINT = 'https://formspree.io/f/ВАШ_ID';
-            try {
-                const response = await fetch(FORMSPREE_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Accept': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
-                if (response.ok) showSuccess();
-                else throw new Error('Ошибка');
-            } catch (error) {
-                console.error('Ошибка:', error);
-                alert('Не удалось отправить заявку. Позвоните нам: +7 (901) 795-55-77');
-            } finally {
-                resetButton();
-            }
-            */
-            
-            // ДЕМО-РЕЖИМ (пока не вставлен бот)
+            // ДЕМО-РЕЖИМ
             console.log('Отправка данных (демо):', formData);
             setTimeout(() => {
                 showSuccess();
